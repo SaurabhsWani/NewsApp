@@ -22,6 +22,18 @@ class _FavsPageState extends State<FavsPage> {
     super.initState();
   }
 
+  void addremovenews(id) {
+    if (widget.favid.contains(id)) {
+      setState(() {
+        widget.favid.remove(id);
+      });
+    } else {
+      setState(() {
+        widget.favid.add(id);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +55,9 @@ class _FavsPageState extends State<FavsPage> {
                             ),
                             elevation: 3,
                             child: ListTile(
+                              onTap: () {
+                                addremovenews(news.id);
+                              },
                               contentPadding: const EdgeInsets.all(5.0),
                               leading: Icon(
                                 widget.favid.contains(news.id)
